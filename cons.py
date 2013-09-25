@@ -32,29 +32,42 @@ class Cons:
         else:
             return '%s, %s' % (self.value, self._next)
 
+#   def __getitem_pythonic__(self, i):
+#       '''
+#       >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[2]
+#       3
+
+#       >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[-2]
+#       8
+
+#       >>> [0 for cons in Cons(3, Cons(5))]
+#       [0, 0]
+
+#       >>> map(str, Cons(3, Cons(5)))
+#       ['3', '5']
+#       '''
+#       if i == 0:
+#           return self.value
+#       elif i < 0:
+#           return self.init().__getitem__(len(self) + i)
+#       elif i > 0:
+#           if self.tail() == None:
+#               raise IndexError('list index out of range')
+#           else:
+#               return self.tail().__getitem__(i - 1)
+
     def __getitem__(self, i):
         '''
-        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[2]
-        3
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[0]
+        98
 
-        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[-2]
-        8
-
-        >>> [0 for cons in Cons(3, Cons(5))]
-        [0, 0]
-
-        >>> map(str, Cons(3, Cons(5)))
-        ['3', '5']
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[1]
+        2, 3, 8, 2
         '''
         if i == 0:
             return self.value
-        elif i < 0:
-            return self.init().__getitem__(len(self) + i)
-        elif i > 0:
-            if self.tail() == None:
-                raise IndexError('list index out of range')
-            else:
-                return self.tail().__getitem__(i - 1)
+        elif i == 1:
+            return self._next
 
     def __getslice__(self, i, j):
         '''
