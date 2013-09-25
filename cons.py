@@ -39,6 +39,9 @@ class Cons:
 
         >>> [0 for cons in Cons(3, Cons(5))]
         [0, 0]
+
+        >>> map(str, Cons(3, Cons(5)))
+        ['3', '5']
         '''
         if i == 0:
             return self.value
