@@ -39,10 +39,10 @@ class Cons:
         '''
         if i == 0:
             return self.value
-        elif i > 0:
-            return self.tail().__getitem__(i - 1)
         elif i < 0:
             return self.init().__getitem__(len(self) + i)
+        elif i > 0:
+            return self.tail().__getitem__(i - 1)
 
     def __getslice__(self, i, j):
         '''
