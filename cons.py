@@ -16,7 +16,7 @@ class Cons:
             raise TypeError('point must be a Cons')
 
         self.value = value
-        self.next = point
+        self._next = point
 
     def __repr__(self):
         '''
@@ -24,10 +24,10 @@ class Cons:
         3, 8
         '''
 
-        if self.next == None:
+        if self._next == None:
             return '%s' % self.value
         else:
-            return '%s, %s' % (self.value, self.next)
+            return '%s, %s' % (self.value, self._next)
 
     def __getitem__(self, i):
         '''
@@ -75,12 +75,12 @@ class Cons:
         '''
         if n == 0:
             return None
-        elif self.next == None:
+        elif self._next == None:
             return self
         elif n == 1:
             return Cons(self.value, None)
         else:
-            return Cons(self.value, self.next.take(n - 1))
+            return Cons(self.value, self._next.take(n - 1))
 
     def drop(self, n):
         '''
@@ -92,7 +92,7 @@ class Cons:
 
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None))))).drop(23)
         '''
-        if self.next == None:
+        if self._next == None:
             return None
         elif n == 0:
             return self
@@ -115,7 +115,7 @@ class Cons:
 
         >>> Cons(2, None).tail()
         '''
-        return self.next
+        return self._next
 
     def last(self):
         '''
@@ -125,10 +125,10 @@ class Cons:
         >>> Cons(2, None).last()
         2
         '''
-        if self.next == None:
+        if self._next == None:
             return self
         else:
-            return self.next.last()
+            return self._next.last()
 
     def init(self):
         '''
@@ -137,12 +137,12 @@ class Cons:
 
         >>> Cons(2, None).init()
         '''
-        if self.next == None:
+        if self._next == None:
             return None
-        elif self.next.next == None:
+        elif self._next._next == None:
             return Cons(self.value, None)
         else:
-            return Cons(self.value, self.next.init())
+            return Cons(self.value, self._next.init())
 
     def insert(cons, value, i):
         '''
@@ -171,10 +171,10 @@ class Cons:
         >>> Cons(8, Cons(2, Cons(3, Cons(-7)))).foldl(lambda a,b:b, -7)
         -7
         '''
-        if self.next == None:
+        if self._next == None:
             return f(init, self.value)
         else:
-            return self.next.foldl(f, f(init, self.value))
+            return self._next.foldl(f, f(init, self.value))
 
     def foldr(self, f, init):
         '''
@@ -203,7 +203,7 @@ class Cons:
         >>> Cons(98, Cons(2, Cons(3, None))) + Cons(7, Cons(8, Cons(2, None)))
         98, 2, 3, 7, 8, 2
         '''
-        if a.next == None:
+        if a._next == None:
             return Cons(a.value, b)
         else:
             return Cons.__add__(a.init(), Cons.__add__(a.last(), b))
