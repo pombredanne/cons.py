@@ -69,6 +69,23 @@ class Cons:
         elif i == 1:
             return self._next
 
+    def __iter__(self):
+        '''
+        >>> [0 for cons in Cons(3, Cons(5))]
+        [0, 0]
+
+        >>> map(str, Cons(3, Cons(5)))
+        ['3', '5']
+        '''
+        self = self._next
+        return self
+
+    def next(self):
+        if self._next == None:
+            raise StopIteration
+        else:
+            return self.value
+
     def __getslice__(self, i, j):
         '''
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[1:4]
