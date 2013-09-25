@@ -54,20 +54,23 @@ class Cons:
 
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[1:]
         2, 3, 8, 2
+
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[:-2]
+        98, 2, 3
         '''
         return self.slice(i, j)
 
     def slice(self, i, j):
         '''
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None))))).slice(0, -2)
-        98, 2, 3, 8
+        98, 2, 3
         '''
         if j > 0:
             return self.drop(i).take(j - i)
         elif j == 0:
             return None
         elif j == -1:
-            return self.drop(i).init()
+            return self.drop(i)
         elif j < -1:
             return self.init().slice(0, j + 1)
 
