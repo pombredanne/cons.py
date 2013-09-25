@@ -189,6 +189,17 @@ class Cons:
         else:
             return Cons.__add__(a.init(), Cons.__add__(a.last(), b))
 
+    def __contains__(container, member):
+        '''
+        >>> 2 in Cons(98, Cons(2, Cons(3, None)))
+        True
+
+        >>> 32 in Cons(98, Cons(2, Cons(3, None)))
+        False
+        '''
+        return (container.value == member) or \
+            (container._next != None and member in container._next)
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
