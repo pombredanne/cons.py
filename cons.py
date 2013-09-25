@@ -172,34 +172,6 @@ class Cons:
         else:
             return cons[:i] + cons[(i+1):]
 
-    def foldl(self, f, init):
-        '''
-        >>> Cons(8, Cons(2, Cons(3, Cons(8)))).foldl(lambda a,b:a+b, 0)
-        21
-
-        >>> Cons(8, Cons(2, Cons(3, Cons(-7)))).foldl(lambda a,b:b, -7)
-        -7
-        '''
-        if self._next == None:
-            return f(init, self.value)
-        else:
-            return self._next.foldl(f, f(init, self.value))
-
-    def foldr(self, f, init):
-        '''
-        >>> Cons(8, Cons(2, Cons(3, Cons(8)))).foldl(lambda a,b:a+b, 0)
-        21
-
-        >>> Cons(8, Cons(2, Cons(3, Cons(-7)))).foldl(lambda a,b:a, 23)
-        23
-
-        This implementation is super inefficient.
-        '''
-        if self.init() == None:
-            return f(self.value, init)
-        else:
-            return self.init().foldr(f, f(self.value, init))
-
     def __len__(self):
         '''
         >>> len(Cons(8, Cons(2, Cons(3, Cons(8)))))
