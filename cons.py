@@ -1,4 +1,7 @@
 class Cons:
+    '''
+    A cons cell
+    '''
     def __init__(self, value, point = None):
         '''
         >>> Cons(3, None)
@@ -203,9 +206,18 @@ class Cons:
         return (container.value == member) or \
             (container._next != None and member in container._next)
 
+def l(*args):
+    '''
+    A linked list
+    >>> l(3, 5, 9)
+    3, 5, 9
+    '''
+    if len(args) > 0:
+        return Cons(args[0], l(*args[1:]))
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    l = Cons(98, Cons(2, Cons(3, Cons(8, Cons(2)))))
-
+    xs = Cons(98, Cons(2, Cons(3, Cons(8, Cons(2)))))
+    ys = l(8, 5, 2, 9, 4)
