@@ -36,13 +36,19 @@ class Cons:
 
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[-2]
         8
+
+        >>> [0 for cons in Cons(3, Cons(5))]
+        [0, 0]
         '''
         if i == 0:
             return self.value
         elif i < 0:
             return self.init().__getitem__(len(self) + i)
         elif i > 0:
-            return self.tail().__getitem__(i - 1)
+            if self.tail() == None:
+                raise IndexError('list index out of range')
+            else:
+                return self.tail().__getitem__(i - 1)
 
     def __getslice__(self, i, j):
         '''
