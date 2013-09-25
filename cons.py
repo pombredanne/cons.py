@@ -164,6 +164,18 @@ class Cons:
         '''
         return cons[:i] +  Cons(value, cons[i:])
 
+    def remove(cons, i):
+        '''
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None))))).remove(2)
+        98, 2, 8, 2
+
+        >>> Cons(2, None).remove(0)
+        '''
+        if i == 0:
+            return None
+        else:
+            return cons[:i] + cons[(i+1):]
+
     def __len__(self):
         '''
         >>> len(Cons(8, Cons(2, Cons(3, Cons(8)))))
