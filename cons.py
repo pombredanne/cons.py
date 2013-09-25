@@ -2,7 +2,7 @@ class Cons:
     '''
     A cons cell
     '''
-    def __init__(self, value, point = None):
+    def __init__(self, value, next = None):
         '''
         >>> Cons(3, None)
         3
@@ -13,13 +13,13 @@ class Cons:
         >>> Cons(4, Cons(8))
         4, 8
         '''
-        if point == None:
+        if next == None:
             pass
-        elif not isinstance(point, Cons):
-            raise TypeError('point must be a Cons')
+        elif not isinstance(next, Cons):
+            raise TypeError('next must be a Cons')
 
-        self.value = value
-        self._next = point
+        self._value = value
+        self._next = next
 
     def __repr__(self):
         '''
@@ -28,9 +28,9 @@ class Cons:
         '''
 
         if self._next == None:
-            return '%s' % self.value
+            return '%s' % self._value
         else:
-            return '%s, %s' % (self.value, self._next)
+            return '%s, %s' % (self._value, self._next)
 
     def __getitem__(self, i):
         '''
@@ -47,7 +47,7 @@ class Cons:
         ['3', '5']
         '''
         if i == 0:
-            return self.value
+            return self._value
         elif i < 0:
             return self.init().__getitem__(len(self) + i)
         elif i > 0:
@@ -93,9 +93,9 @@ class Cons:
         elif self._next == None:
             return self
         elif n == 1:
-            return Cons(self.value, None)
+            return Cons(self._value, None)
         else:
-            return Cons(self.value, self._next.take(n - 1))
+            return Cons(self._value, self._next.take(n - 1))
 
     def drop(self, n):
         '''
@@ -121,7 +121,7 @@ class Cons:
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None))))).head()
         98
         '''
-        return self.value
+        return self._value
 
     def tail(self):
         '''
@@ -155,7 +155,7 @@ class Cons:
         if self._next == None:
             return None
         else:
-            return Cons(self.value, self._next.init())
+            return Cons(self._value, self._next.init())
 
     def insert(cons, value, i):
         '''
@@ -189,7 +189,7 @@ class Cons:
         98, 2, 3, 7, 8, 2
         '''
         if a._next == None:
-            return Cons(a.value, b)
+            return Cons(a._value, b)
         else:
             return Cons.__add__(a.init(), Cons.__add__(a.last(), b))
 
@@ -201,7 +201,7 @@ class Cons:
         >>> 32 in Cons(98, Cons(2, Cons(3, None)))
         False
         '''
-        return (container.value == member) or \
+        return (container._value == member) or \
             (container._next != None and member in container._next)
 
 def l(*args):
