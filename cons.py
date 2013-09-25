@@ -177,7 +177,7 @@ class Cons:
         >>> len(Cons(8, Cons(2, Cons(3, Cons(8)))))
         4
         '''
-        return self.foldl(lambda a,b:a+1, 0)
+        return reduce(lambda a,b:a+1, self, 0)
 
     def __add__(a, b):
         '''
