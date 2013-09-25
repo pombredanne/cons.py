@@ -33,6 +33,9 @@ class Cons:
         '''
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[2]
         3
+
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[-2]
+        8
         '''
         current = self
         for _ in range(i):
@@ -49,6 +52,9 @@ class Cons:
 
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[1:]
         2, 3, 8, 2
+
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[:-2]
+        98, 2, 3, 8
         '''
         return self.drop(i).take(j - i)
 
