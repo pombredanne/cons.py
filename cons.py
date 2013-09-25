@@ -154,8 +154,6 @@ class Cons:
         '''
         if self._next == None:
             return None
-        elif self._next._next == None:
-            return Cons(self.value, None)
         else:
             return Cons(self.value, self._next.init())
 
