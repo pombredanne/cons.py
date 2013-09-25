@@ -34,15 +34,15 @@ class Cons:
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[2]
         3
 
-        # >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[-2]
-        # 8
+        >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[-2]
+        8
         '''
         if i == 0:
             return self.value
         elif i > 0:
             return self.tail().__getitem__(i - 1)
         elif i < 0:
-            return self.init().__getitem__(i + 1)
+            return self.init().__getitem__(len(self) + i)
 
     def __getslice__(self, i, j):
         '''
