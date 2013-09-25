@@ -67,6 +67,9 @@ class Cons:
         >>> Cons(98, Cons(2, Cons(3, Cons(8, Cons(2, None)))))[:-2]
         98, 2, 3
         '''
+        # Switch this to __getitem__ with slices
+        # http://www.siafoo.net/article/57
+        # http://docs.python.org/release/2.3.5/whatsnew/section-slices.html
         if j > 0:
             return self.drop(i).take(j - i)
         elif j == 0:
